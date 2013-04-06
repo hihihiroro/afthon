@@ -28,10 +28,16 @@ sub load_config {
 get '/' => sub {
     my $c = shift;
 
+    return $c->render('index.tt');
+};
+
+get '/json' => sub {
+    my $c = shift;
+
     my $rank = new Rankdata;
     my $items = $rank->getItems;
 
-    return $c->render('index.tt' => { items => $items } );
+    return $c->render_json($items);
 };
 
 # load plugins
@@ -57,10 +63,11 @@ __DATA__
     <script type="text/javascript" src="[% uri_for('/static/js/main.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery.masonry.min.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery.balloon.min.js') %]"></script>
+    <script type="text/javascript" src="[% uri_for('/static/js/jquery-ui.js') %]"></script>
     <link rel="stylesheet" href="[% uri_for('/static/css/main.css') %]">
+    <link rel="stylesheet" href="[% uri_for('/static/css/jquery-ui.css') %]">
     <style>
         .item {
-          width: 220px;
           margin: 5px;
           float: left;
           border: 1px solid #ccc;
@@ -71,11 +78,14 @@ __DATA__
         img {
             vertical-align: bottom;
         }
-#container {
-padding: 10px;
-background-color: #ccc;
-}
-
+        #container {
+        padding: 10px;
+        background-color: #ccc;
+        }
+        label {
+            display: inline-block;
+            width: 5em;
+        }
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -85,8 +95,24 @@ background-color: #ccc;
                 isAnimated: true
                 });
             });
-            $('.item').balloon({
-                contents : 'balloon test.'
+            $(document).tooltip();
+
+            $.ajax({
+                url: '/json',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data, textStatus, jqXHR) {
+                    var html = '';
+                    $.each(data, function() {
+                        console.log(this);
+                        html += '<div class="item tTip"><a href="' + this.affiliateUrl + '" title="' + this.itemName + '"><img src="' + this.mediumImageUrls[0].imageUrl[0] + '"/></a></div>';
+                    });
+                    $('#container').html(html);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                },
+                complete: function(jqXHR, textStatus) {
+                }
             });
         });
     </script>
@@ -94,14 +120,7 @@ background-color: #ccc;
 <body>
     <div class="container">
         <header><h1>NINA'S Selection!</h1></header>
-        <div id="container">
-[% FOR item IN items %]
-            <div class="item">
-                <a href="[% item.affiliateUrl %]">
-                    <img src="[% item.mediumImageUrls.0.imageUrl.0 %]"/></div>
-                </a>
-[% END %]
-        </div>
+        <div id="container"></div>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
     </div>
 </body>
