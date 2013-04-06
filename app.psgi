@@ -51,7 +51,6 @@ __DATA__
     <script type="text/javascript" src="[% uri_for('/static/js/jquery-1.9.1.min.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/main.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery.masonry.min.js') %]"></script>
-    <script type="text/javascript" src="[% uri_for('/static/js/jquery.betterTooltip.js') %]"></script>
     <link rel="stylesheet" href="[% uri_for('/static/css/main.css') %]">
     <style>
         .item {
@@ -70,6 +69,7 @@ __DATA__
 padding: 10px;
 background-color: #ccc;
 }
+
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
