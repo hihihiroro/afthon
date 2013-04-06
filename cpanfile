@@ -1,4 +1,4 @@
-requires 'Plack';
+requires 'Task::Plack';
 requires 'Amon2::Lite';
 requires 'File::Slurp';
 requires 'WebService::Rakuten';
