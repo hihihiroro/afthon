@@ -27,16 +27,11 @@ sub load_config {
 
 get '/' => sub {
     my $c = shift;
-    return $c->render('index.tt');
-};
-
-get '/rank' => sub {
-    my $c = shift;
 
     my $rank = new Rankdata;
     my $items = $rank->getItems;
-    
-    return $c->render('rank.tt' => { items => $items } );
+
+    return $c->render('index.tt' => { items => $items } );
 };
 
 # load plugins
@@ -83,12 +78,6 @@ background-color: #ccc;
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
-            var html = "";
-            for (var i = 0; i < 10; i++) {
-                html += "<div class='item'><img src='http://biography.sophia-it.com/imgb/binmi001.png'></div>";
-            }
-            $('#container').html(html);
-
             $('#container').imagesLoaded(function() {
                 $('#container').masonry({
                 itemSelector : '.item',
@@ -101,7 +90,11 @@ background-color: #ccc;
 <body>
     <div class="container">
         <header><h1>NINA'S Selection!</h1></header>
-        <div id="container"></div>
+        <div id="container">
+[% FOR item IN items %]
+            <div class="item"><img src="[% item.mediumImageUrls.0.imageUrl.0 %]"/></div>
+[% END %]
+        </div>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
     </div>
 </body>
@@ -130,9 +123,6 @@ footer {
     <div class="container">
         <header><h1>afthon</h1></header>
         <section class="row">
-[% FOR item IN items %]
-    <div><img src="[% item.mediumImageUrls.0.imageUrl.0 %]"/></div>
-[% END %]
         </section>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
     </div>
