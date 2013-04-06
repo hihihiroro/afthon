@@ -8,3 +8,4 @@ requires 'XML::SAX::Expat';
 requires 'YAML::Syck';
 requires 'Log::Minimal';
 requires 'LWP::Protocol::https';
+requires 'MongoDB';
