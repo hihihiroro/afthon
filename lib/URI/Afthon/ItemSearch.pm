@@ -48,7 +48,6 @@ sub _request {
 
     my $ua = LWP::UserAgent->new;
     my $u = $self->_make_request_uri($query_params_ref);
-
     my $r = $ua->get($u);
 
     if ($r->is_success) {
@@ -66,7 +65,7 @@ sub _request {
 
 sub _make_request_uri {
     my ($self, $query_params_ref) = @_;
-    my $u = URI->new('https://app.rakuten.co.jp/services/api/IchibaItem/Ranking/20120927');
+    my $u = URI->new('https://app.rakuten.co.jp/services/api/IchibaItem/Search/20120723');
 
     ref $u eq 'URI::https' or carp "must be https";
 
