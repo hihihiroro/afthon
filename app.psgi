@@ -92,7 +92,10 @@ background-color: #ccc;
         <header><h1>NINA'S Selection!</h1></header>
         <div id="container">
 [% FOR item IN items %]
-            <div class="item"><img src="[% item.mediumImageUrls.0.imageUrl.0 %]"/></div>
+            <div class="item">
+                <a href="[% item.affiliateUrl %]">
+                    <img src="[% item.mediumImageUrls.0.imageUrl.0 %]"/></div>
+                </a>
 [% END %]
         </div>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
@@ -106,25 +109,3 @@ background-color: #ccc;
 footer {
     text-align: right;
 }
-
-@@ rank.tt
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>afthon</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-    <script type="text/javascript" src="[% uri_for('/static/js/main.js') %]"></script>
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-    <link rel="stylesheet" href="[% uri_for('/static/css/main.css') %]">
-</head>
-<body>
-    <div class="container">
-        <header><h1>afthon</h1></header>
-        <section class="row">
-        </section>
-        <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
-    </div>
-</body>
-</html>
