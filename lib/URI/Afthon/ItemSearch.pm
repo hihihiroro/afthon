@@ -57,23 +57,10 @@ sub _request {
             ForceArray => ['Item', 'Error', 'mediumImageUrls', 'smallImageUrls'],
         );
 
-        my $items_ref = $content->{Items}->{Item};
-
-        foreach my $item (@{$items_ref}) {
-            my @images = ();
-            foreach my $image_urls (@{$item->{mediumImageUrls}}) {
-                if (ref $image_urls eq 'ARRAY') {
-                    foreach my $image_url (@{$image_urls->{imageUrl}}) {
-                        push(@images, $image_url);
-                    }
-                } else {
-                    push(@images, $image_urls);
-                }
-            }
-            infof("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s", $item->{rank}, $item->{itemName},$item->{catchcopy},$item->{itemCode},$item->{itemPrice}, $item->{itemUrl}, $item->{affiliateUrl}, join(",", @images), $item->{shopName}, $item->{shopCode}, $item->{shopUrl});
-        }
+	return $content->{Items};
     } else {
         warnf($r->status_line, $r->as_string, $r->message());
+	carp "parse error";
     }
 }
 
