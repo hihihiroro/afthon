@@ -8,6 +8,7 @@ use open OUT => qw/:utf8 :std/;
 our $VERSION = '0.01';
 
 use WebService::Rakuten;
+use Hash::Merge qw( merge );
 use XML::Simple;
 use YAML::Syck;
 use LWP::UserAgent;
@@ -41,6 +42,17 @@ sub search {
     );
 
     $self->_request(\%query_params);
+
+    if ($self->{page_count} > 1) {
+        my $page = $self->{page_count};
+
+        if ($page > 1) {
+            for (my $i = 2; $i <= $page; $i++) {
+                $query_params{page} = $i;
+                $self->_request(\%query_params);
+            }
+        }
+    }
 }
 
 sub _request {
@@ -56,10 +68,17 @@ sub _request {
             ForceArray => ['Item', 'Error', 'mediumImageUrls', 'smallImageUrls'],
         );
 
-	return $content->{Items};
+        $self->{page_count} = $content->{pageCount} + 0;
+
+        if (exists $self->{item_list}) {
+            my $merged_item_list = merge($self->{item_list}, $content->{Items});
+            $self->{item_list} = $merged_item_list;
+        } else {
+            $self->{item_list} = $content->{Items};
+        }
     } else {
         warnf($r->status_line, $r->as_string, $r->message());
-	carp "parse error";
+        carp "parse error";
     }
 }
 

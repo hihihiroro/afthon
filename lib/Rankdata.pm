@@ -22,7 +22,7 @@ sub getItems {
     my $data       = $collection->find_one(); #->sort({_id => -1});
 
     my $ref = $data->{Item};
-    return $ref; 
+    return $ref;
 }
 
 1;
