@@ -19,7 +19,7 @@ use Log::Minimal;
 my $search = URI::Afthon::ItemSearch->new(
     'affiliateId' => '11068980.9df881e7.11068981.510ea67c',
 );
-my $ret = $search->search(genreId => '100433');
+my $ret = $search->search(genreId => '100433', shopCode => 'sexy' );
 
 my $client     = MongoDB::MongoClient->new(host => 'localhost', port => 27017);
 my $database   = $client->get_database( 'afthon' );
