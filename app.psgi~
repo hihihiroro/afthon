@@ -70,6 +70,16 @@ __DATA__
 padding: 10px;
 background-color: #ccc;
 }
+.tip {
+    width: 212px;
+    padding-top: 37px;
+    display: none;
+    position: absolute;
+    background: transparent url(images/tipTop.png) no-repeat top;}
+
+.tipMid {background: transparent url(images/tipMid.png) repeat-y; padding: 0 25px 20px 25px;}
+.tipBtm {background: transparent url(images/tipBtm.png) no-repeat bottombottom; height: 32px;}
+
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -85,12 +95,20 @@ background-color: #ccc;
                 isAnimated: true
                 });
             });
+            $('.item').betterTooltip({
+                speed : 150,
+                delay : 300
+            })
         });
     </script>
 </head>
 <body>
     <div class="container">
         <header><h1>NINA'S Selection!</h1></header>
+        <div class="tip">
+            <div class="tipMid"></div>
+            <div class="tipBtm"></div>
+        </div>
         <div id="container"></div>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
     </div>
