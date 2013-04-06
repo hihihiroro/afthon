@@ -4,3 +4,5 @@ Makefile
 pm_to_blib
 *.swp
 
+.carton/
+local/
