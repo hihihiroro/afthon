@@ -53,7 +53,7 @@
                         console.log(this);
                         html += '<div class="item tTip"><a href="' + this.affiliateUrl + '" title="' + this.itemName + '"><img src="' + this.mediumImageUrls[0].imageUrl[0] + '"/></a></div>';
                     });
-                    $('#container').html(html);
+                    $('#container').html(html).masonry('reload');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                 },
@@ -65,10 +65,10 @@
 </head>
 <body>
     <div class="container">
-        <header><h1>NINA'S Selection!</h1></header>
+        <header><img src="/static/img/logo.png" alt="Nina's selecion!" width="487" height="100" /></header>
         <div id="container"></div>
-    </div>
         <footer>Powered by <a href="http://amon.64p.org/">Amon2::Lite</a></footer>
+    </div>
 </body>
 </html>
 
