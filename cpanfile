@@ -9,3 +9,4 @@ requires 'YAML::Syck';
 requires 'Log::Minimal';
 requires 'LWP::Protocol::https';
 requires 'MongoDB';
+requires 'Hash::Merge';

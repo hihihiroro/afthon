@@ -1278,6 +1278,69 @@
          "target" : "Class::Singleton",
          "version" : "1.4"
       },
+      "Clone" : {
+         "dist" : "Clone-0.34",
+         "mymeta" : {
+            "abstract" : "recursively copy Perl datatypes",
+            "author" : [
+               "Ray Finch <rdf@cpan.org>"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120921, CPAN::Meta::Converter version 2.130880",
+            "license" : [
+               "perl_5"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Clone",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "Test::More" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {}
+               }
+            },
+            "release_status" : "stable",
+            "resources" : {
+               "bugtracker" : {
+                  "web" : "http://rt.cpan.org/NoAuth/Bugs.html?Dist=Clone"
+               },
+               "license" : [
+                  "http://dev.perl.org/licenses/"
+               ],
+               "repository" : {
+                  "url" : "http://github.com/garu/Clone"
+               }
+            },
+            "version" : "0.34"
+         },
+         "name" : "Clone",
+         "pathname" : "G/GA/GARU/Clone-0.34.tar.gz",
+         "provides" : {
+            "Clone" : {
+               "file" : "Clone.pm",
+               "version" : "0.34"
+            }
+         },
+         "target" : "Clone",
+         "version" : "0.34"
+      },
       "Coro" : {
          "dist" : "Coro-6.23",
          "mymeta" : {
@@ -9832,6 +9895,61 @@
          },
          "target" : "HTTP::Server::Simple::PSGI",
          "version" : "0.14"
+      },
+      "Hash::Merge" : {
+         "dist" : "Hash-Merge-0.12",
+         "mymeta" : {
+            "abstract" : "Merges arbitrarily deep hashes into a single hash",
+            "author" : [
+               "Michael K. Neylon <mneylon-pm@masemware.com"
+            ],
+            "dynamic_config" : 0,
+            "generated_by" : "ExtUtils::MakeMaker version 6.56, CPAN::Meta::Converter version 2.130880",
+            "license" : [
+               "unknown"
+            ],
+            "meta-spec" : {
+               "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+               "version" : "2"
+            },
+            "name" : "Hash-Merge",
+            "no_index" : {
+               "directory" : [
+                  "t",
+                  "inc"
+               ]
+            },
+            "prereqs" : {
+               "build" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "configure" : {
+                  "requires" : {
+                     "ExtUtils::MakeMaker" : "0"
+                  }
+               },
+               "runtime" : {
+                  "requires" : {
+                     "Clone" : "0",
+                     "Test::More" : "0.33"
+                  }
+               }
+            },
+            "release_status" : "stable",
+            "version" : "0.12"
+         },
+         "name" : "Hash::Merge",
+         "pathname" : "D/DM/DMUEY/Hash-Merge-0.12.tar.gz",
+         "provides" : {
+            "Hash::Merge" : {
+               "file" : "Hash/Merge.pm",
+               "version" : "0.12"
+            }
+         },
+         "target" : "Hash::Merge",
+         "version" : "0.12"
       },
       "Hash::MultiValue" : {
          "dist" : "Hash-MultiValue-0.13",
