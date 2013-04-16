@@ -5,7 +5,6 @@
     <title>NINA'S Selection</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="[% uri_for('/static/js/jquery-1.9.1.min.js') %]"></script>
-    <script type="text/javascript" src="[% uri_for('/static/js/main.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery.masonry.min.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery.balloon.min.js') %]"></script>
     <script type="text/javascript" src="[% uri_for('/static/js/jquery-ui.js') %]"></script>
@@ -15,6 +14,8 @@
     <style>
         .item {
           margin: 5px;
+          width: 128px;
+          height: 128px;
           float: left;
           border: 1px solid #ccc;
           background: #eee;
@@ -34,26 +35,29 @@
         }
     </style>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#container').imagesLoaded(function() {
-                $('#container').masonry({
-                itemSelector : '.item',
-                isAnimated: true
+        $(function() {
+            var container = $('#container');
+            container.imagesLoaded( function() {
+                container.masonry({
+                    itemSelector : '.item',
+                    isAnimated: true
                 });
+                // $(document).tooltip();
             });
-            $(document).tooltip();
+	});
 
+        $(document).ready(function() {
             $.ajax({
                 url: '/json',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data, textStatus, jqXHR) {
-                    var html = '';
+                    var container = $('#container');
                     $.each(data, function() {
-                        console.log(this);
-                        html += '<div class="item tTip"><a href="' + this.affiliateUrl + '" title="' + this.itemName + '"><img src="' + this.mediumImageUrls[0].imageUrl[0] + '"/></a></div>';
+                        var html = $('<div class="item tTip"><a href="' + this.affiliateUrl + '" title="' + this.itemName + '"><img src="' + this.mediumImageUrls[0].imageUrl[0] + '"/></a></div>');
+                        container.append(html);
                     });
-                    $('#container').html(html).masonry('reload');
+                    $('#container').masonry('reload');
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                 },
